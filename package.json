@@ -1,6 +1,6 @@
 {
   "name": "@sezgi-gunes/noyirmibir-react",
-  "version": "0.8.0",
+  "version": "0.8.4",
   "description": "Noyirmibir React",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -62,11 +62,13 @@
   "dependencies": {
     "@types/react-datepicker": "^4.4.1",
     "@types/react-input-mask": "^3.0.1",
-    "@types/react-transition-group": "^4.4.4",
     "react-datepicker": "^4.8.0",
     "react-input-mask": "^2.0.4",
     "react-number-format": "^4.9.3",
-    "react-select": "^5.3.2",
-    "react-transition-group": "^4.4.2"
+    "react-select": "^5.3.2"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   }
 }
