@@ -1,7 +1,7 @@
 export { default as Noyirmibir } from "./main";
 export { default as Tabs, TabMenu, TabContainer, TabItem, TabMenuItem } from "./tabs";
 export { default as Accordion, AccordionItem, AccordionBody, AccordionHeader } from "./accordion";
-export { default as Popup } from "./popup";
+export { default as Popup, usePopup } from "./popup";
 export { default as Image } from "./image";
 export { default as Background } from "./background";
 export { default as Form } from "./form";
