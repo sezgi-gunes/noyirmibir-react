@@ -17,6 +17,7 @@ type FileUploadProps = {
 
 const FileUpload = (props: FileUploadProps) => {
     const context = useContext(FormContext);
+    const item = context.model.items.find(x => x.name === props.name);
     const input = useRef<HTMLInputElement>(null);
     const reader = new FileReader();
 
@@ -43,7 +44,6 @@ const FileUpload = (props: FileUploadProps) => {
     }, []);
 
     const handleChange = (value: string) => {
-        const item = context.model.items.find(x => x.name === props.name);
         let sameWithValue = context.model.items.find(x => x.name === props.rules?.find(x => x.type === ValidationType.SameWith)?.value)?.value;
 
         if (input && input.current && input.current.files && input.current.files.length > 0) {
@@ -51,8 +51,6 @@ const FileUpload = (props: FileUploadProps) => {
         }
         else {
             if (input && input.current) {
-                const item = context.model.items.find(x => x.name === props.name);
-
                 input.current.value = "";
 
                 if (item) {
@@ -75,8 +73,6 @@ const FileUpload = (props: FileUploadProps) => {
     }
 
     reader.addEventListener("load", function () {
-        const item = context.model.items.find(x => x.name === props.name);
-
         if (item) {
             item.data = reader.result as string;
             context.setModel({ ...context.model });
@@ -101,7 +97,7 @@ const FileUpload = (props: FileUploadProps) => {
     // }
 
     return (
-        <div className={"form-item" + ((props.value ?? "".toString()).length > 0 ? " filled" : "") + (props.isValid === false ? " has-error" : "") + (props.classNames ? " " + props.classNames : "")}>
+        <div className={"form-item" + ((item?.value ?? "".toString()).length > 0 ? " filled" : "") + (item?.isValid === false ? " error" : "") + (props.classNames ? " " + props.classNames : "")}>
             {props.label &&
                 <label>{props.label}</label>
             }

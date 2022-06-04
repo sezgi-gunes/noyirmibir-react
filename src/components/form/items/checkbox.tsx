@@ -18,6 +18,7 @@ type CheckboxProps = {
 
 const Checkbox = (props: CheckboxProps) => {
     const context = useContext(FormContext);
+    const item = context.model.items.find(x => x.name === props.name);
 
     useEffect(() => {
         if (context.model.items.some(x => x.name === props.name)) {
@@ -41,7 +42,6 @@ const Checkbox = (props: CheckboxProps) => {
     }, []);
 
     const handleChange = (value: any) => {
-        const item = context.model.items.find(x => x.name === props.name);
         let sameWithValue = context.model.items.find(x => x.name === props.rules?.find(x => x.type === ValidationType.SameWith)?.value)?.value;
 
         if (item) {
@@ -57,7 +57,7 @@ const Checkbox = (props: CheckboxProps) => {
     }
 
     return (
-        <div className={"form-item" + ((props.value??"".toString()).length > 0 ? " filled" : "") + (props.isValid === false ? " has-error" : "") + (props.classNames ? " " + props.classNames : "")}>
+        <div className={"form-item" + ((item?.value??"".toString()).length > 0 ? " filled" : "") + (item?.isValid === false ? " error" : "") + (props.classNames ? " " + props.classNames : "")}>
             <input
                 type="checkbox"
                 id={props.name}

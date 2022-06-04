@@ -21,6 +21,7 @@ type InputPasswordProps = {
 
 const InputPassword = (props: InputPasswordProps) => {
     const context = useContext(FormContext);
+    const item = context.model.items.find(x => x.name === props.name);
 
     useEffect(() => {
         if (context.model.items.some(x => x.name === props.name)) {
@@ -44,7 +45,6 @@ const InputPassword = (props: InputPasswordProps) => {
     }, []);
 
     const handleChange = (value: string) => {
-        const item = context.model.items.find(x => x.name === props.name);
         let sameWithValue = context.model.items.find(x => x.name === props.rules?.find(x => x.type === ValidationType.SameWith)?.value)?.value;
 
         if (item) {
@@ -60,7 +60,7 @@ const InputPassword = (props: InputPasswordProps) => {
     }
 
     return (
-        <div className={"form-item" + ((props.value??"".toString()).length > 0 ? " filled" : "") + (props.isValid === false ? " has-error" : "") + (props.classNames ? " " + props.classNames : "")}>
+        <div className={"form-item" + ((item?.value??"".toString()).length > 0 ? " filled" : "") + (item?.isValid === false ? " error" : "") + (props.classNames ? " " + props.classNames : "")}>
             {props.label &&
                 <label>{props.label}</label>
             }

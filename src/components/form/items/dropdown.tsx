@@ -24,6 +24,7 @@ type DropdownProps = {
 
 const Dropdown = (props: DropdownProps) => {
     const context = useContext(FormContext);
+    const item = context.model.items.find(x => x.name === props.name);
     const [isActive, setActive] = useState(false);
 
     useEffect(() => {
@@ -48,7 +49,6 @@ const Dropdown = (props: DropdownProps) => {
     }, []);
 
     const handleChange = (value: any) => {
-        const item = context.model.items.find(x => x.name === props.name);
         let sameWithValue = context.model.items.find(x => x.name === props.rules?.find(x => x.type === ValidationType.SameWith)?.value)?.value;
 
         if (item) {
@@ -64,7 +64,7 @@ const Dropdown = (props: DropdownProps) => {
     }
 
     return (
-        <div className={"form-item" + ((props.value??"".toString()).length > 0 ? " filled" : "") + (props.isValid === false ? " has-error" : "") + (props.classNames ? " " + props.classNames : "")}
+        <div className={"form-item" + ((item?.value??"".toString()).length > 0 ? " filled" : "") + (item?.isValid === false ? " error" : "") + (props.classNames ? " " + props.classNames : "")}
             onFocusCapture={() => { setActive(true) }}
             onBlurCapture={() => { setActive(false) }}
         >

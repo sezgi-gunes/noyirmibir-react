@@ -21,6 +21,7 @@ type InputSplitProps = {
 const InputSplit = (props: InputSplitProps) => {
     const inputs = useRef(new Array<HTMLInputElement>());
     const context = useContext(FormContext);
+    const item = context.model.items.find(x => x.name === props.name);
 
     useEffect(() => {
         if (context.model.items.some(x => x.name === props.name)) {
@@ -56,7 +57,6 @@ const InputSplit = (props: InputSplitProps) => {
             }
         }
 
-        const item = context.model.items.find(x => x.name === props.name);
         let sameWithValue = context.model.items.find(x => x.name === props.rules?.find(x => x.type === ValidationType.SameWith)?.value)?.value;
 
         if (item) {
@@ -118,7 +118,7 @@ const InputSplit = (props: InputSplitProps) => {
     }
 
     return (
-        <div className={"form-item" + ((props.value ?? "".toString()).length > 0 ? " filled" : "") + (props.isValid === false ? " has-error" : "") + (props.classNames ? " " + props.classNames : "")}>
+        <div className={"form-item" + ((item?.value ?? "".toString()).length > 0 ? " filled" : "") + (item?.isValid === false ? " error" : "") + (props.classNames ? " " + props.classNames : "")}>
             {props.label &&
                     <label>{props.label}</label>
                 }
