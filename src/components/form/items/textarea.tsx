@@ -48,7 +48,7 @@ const Textarea = (props: TextareaProps) => {
 
         if (item) {
             item.value = value;
-            item.isValid = validateFormItem(value, props.rules, sameWithValue);
+            item.isValid = validateFormItem(value, item?.rules, sameWithValue);
 
             context.setModel({...context.model});
         }
@@ -72,7 +72,7 @@ const Textarea = (props: TextareaProps) => {
                 {...(props.isDisabled ? { disabled: true } : {})}
             ></textarea>
             {props.children}
-            <ErrorMessage rules={props.rules} />
+            <ErrorMessage rules={item?.rules} />
         </div>
     )
 }

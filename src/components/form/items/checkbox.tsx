@@ -46,7 +46,7 @@ const Checkbox = (props: CheckboxProps) => {
 
         if (item) {
             item.value = value;
-            item.isValid = validateFormItem(value, props.rules, sameWithValue);
+            item.isValid = validateFormItem(value, item?.rules, sameWithValue);
 
             context.setModel({...context.model});
         }
@@ -68,7 +68,7 @@ const Checkbox = (props: CheckboxProps) => {
                 {...(props.isDisabled ? { disabled: true } : {})}
             />
             <label htmlFor={props.name}>{props.label}</label>
-            <ErrorMessage rules={props.rules} />
+            <ErrorMessage rules={item?.rules} />
         </div>
     )
 }

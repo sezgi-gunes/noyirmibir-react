@@ -53,7 +53,7 @@ const Dropdown = (props: DropdownProps) => {
 
         if (item) {
             item.value = value;
-            item.isValid = validateFormItem(value, props.rules, sameWithValue);
+            item.isValid = validateFormItem(value, item?.rules, sameWithValue);
 
             context.setModel({...context.model});
         }
@@ -83,7 +83,7 @@ const Dropdown = (props: DropdownProps) => {
                 isDisabled={props.isDisabled ? true : false}
             />
             {props.children}
-            <ErrorMessage rules={props.rules} />
+            <ErrorMessage rules={item?.rules} />
         </div>
     )
 }

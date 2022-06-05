@@ -17,23 +17,21 @@ export default {
 const Template: Story = (args) => {
     return <Noyirmibir>
         <Form submitFunction={(model: any) => console.log(model)}>
-                <InputText name='fullname' rules={[{type: ValidationType.Required, message: "Bu alan gereklidir."}]}></InputText>
-                {/* <Checkbox name='foreign' label='Yabancı' value='true'></Checkbox>
-                <FormContext.Consumer>
-                    {context => {
-                        console.log(context.model.items);
-
-                        return <>
-                            {context.model.val("foreign") == "true" &&
-                                <InputText name='passport' placeholder='Pasaport No' rules={[
-                                    {type: ValidationType.Required}, {type: ValidationType.ExactLength, value: 14, message: "Pasaport no 14 haneli olmalıdır."}
-                                ]}></InputText>
-                            }
-                        </>
-                    }}
-                </FormContext.Consumer> */}
-                <button>Gönder</button>
-            </Form>
+            {/* <InputText name='fullname' rules={[{ type: ValidationType.Required, message: "Bu alan gereklidir." }]}></InputText> */}
+            <Checkbox name='foreign' label='Yabancı' value='true'></Checkbox>
+            <FormContext.Consumer>
+                {context => {
+                    return <>
+                        {context.model.val("foreign") == "true" &&
+                            <InputText name='passport' placeholder='Pasaport No' rules={[
+                                { type: ValidationType.Required, message: "Gereklidir" }, { type: ValidationType.ExactLength, value: 14, message: "Pasaport no 14 haneli olmalıdır." }
+                            ]}></InputText>
+                        }
+                    </>
+                }}
+            </FormContext.Consumer>
+            <button>Gönder</button>
+        </Form>
     </Noyirmibir>
 };
 

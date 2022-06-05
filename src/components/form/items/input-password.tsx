@@ -49,7 +49,7 @@ const InputPassword = (props: InputPasswordProps) => {
 
         if (item) {
             item.value = value;
-            item.isValid = validateFormItem(value, props.rules, sameWithValue);
+            item.isValid = validateFormItem(value, item?.rules, sameWithValue);
 
             context.setModel({...context.model});
         }
@@ -73,7 +73,7 @@ const InputPassword = (props: InputPasswordProps) => {
                 {...(props.isDisabled ? {disabled: true} : {})}
             />
             {props.children}
-            <ErrorMessage rules={props.rules} />
+            <ErrorMessage rules={item?.rules} />
         </div>
     )
 }

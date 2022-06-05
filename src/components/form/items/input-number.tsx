@@ -55,7 +55,7 @@ const InputNumber = (props: InputNumberProps) => {
 
         if (item) {
             item.value = value;
-            item.isValid = validateFormItem(value, props.rules, sameWithValue);
+            item.isValid = validateFormItem(value, item?.rules, sameWithValue);
 
             context.setModel({...context.model});
         }
@@ -83,7 +83,7 @@ const InputNumber = (props: InputNumberProps) => {
                 {...(props.isDisabled ? {disabled: true} : {})}
             />
             {props.children}
-            <ErrorMessage rules={props.rules} />
+            <ErrorMessage rules={item?.rules} />
         </div>
     )
 }

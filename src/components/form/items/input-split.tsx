@@ -61,7 +61,7 @@ const InputSplit = (props: InputSplitProps) => {
 
         if (item) {
             item.value = currentValue;
-            item.isValid = validateFormItem(currentValue, props.rules, sameWithValue);
+            item.isValid = validateFormItem(currentValue, item?.rules, sameWithValue);
 
             context.setModel({...context.model});
         }
@@ -126,7 +126,7 @@ const InputSplit = (props: InputSplitProps) => {
                 {items}
             </div>
             {props.children}
-            <ErrorMessage rules={props.rules} />
+            <ErrorMessage rules={item?.rules} />
         </div>
     )
 }
